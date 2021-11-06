@@ -217,11 +217,11 @@ def load_model(model_type):
     resnet=models.resnet50(pretrained=False)
     checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/imagenet_linf_8.pt',map_location=torch.device('cuda') )
     state_dict=checkpoint['model']
-#     for k in list(state_dict.keys()):
-#         if k.startswith('module.attacker.model.') and not k.startswith('module.attacker.normalize') :
+    for k in list(state_dict.keys()):
+        if k.startswith('module.model.') and not k.startswith('module.normalize') :
 
-#             state_dict[k[len('module.attacker.model.'):]] = state_dict[k]
-#         del state_dict[k]
+            state_dict[k[len('module.model.'):]] = state_dict[k]
+        del state_dict[k]
     resnet.load_state_dict(state_dict)
     return resnet
 
@@ -241,11 +241,11 @@ def load_model(model_type):
     resnet=models.resnet50(pretrained=False)
     checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/imagenet_linf_4.pt',map_location=torch.device('cuda') )
     state_dict=checkpoint['model']
-#     for k in list(state_dict.keys()):
-#         if k.startswith('module.attacker.model.') and not k.startswith('module.attacker.normalize') :
+    for k in list(state_dict.keys()):
+        if k.startswith('module.model.') and not k.startswith('module.normalize') :
 
-#             state_dict[k[len('module.attacker.model.'):]] = state_dict[k]
-#         del state_dict[k]
+            state_dict[k[len('module.model.'):]] = state_dict[k]
+        del state_dict[k]
     resnet.load_state_dict(state_dict)
     return resnet
 
@@ -265,17 +265,17 @@ def load_model(model_type):
     resnet=models.resnet50(pretrained=False)
     checkpoint = torch.load('/content/gdrive/MyDrive/model_checkpoints/imagenet_l2_3_0.pt',map_location=torch.device('cuda') )
     state_dict=checkpoint['model']
-#     for k in list(state_dict.keys()):
-#         if k.startswith('module.attacker.model.') and not k.startswith('module.attacker.normalize') :
+    for k in list(state_dict.keys()):
+        if k.startswith('module.model.') and not k.startswith('module.normalize') :
 
-#             state_dict[k[len('module.attacker.model.'):]] = state_dict[k]
-#         del state_dict[k]
+            state_dict[k[len('module.model.'):]] = state_dict[k]
+        del state_dict[k]
     resnet.load_state_dict(state_dict)
     return resnet
 
 
 # net = models.densenet121(pretrained=True)
-net = load_model(sys.argv[2])
+net = load_model(sys.argv[1])
 net.cuda()
 net.eval()
 
