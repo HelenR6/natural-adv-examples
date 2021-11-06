@@ -19,12 +19,12 @@ std = [0.229, 0.224, 0.225]
 test_transform = trn.Compose(
     [trn.Resize(256), trn.CenterCrop(224), trn.ToTensor(), trn.Normalize(mean, std)])
 
-naes = dset.ImageFolder(root="./imagenet-a/", transform=test_transform)
+naes = dset.ImageFolder(root="/content/gdrive/MyDrive/imagenet-a", transform=test_transform)
 nae_loader = torch.utils.data.DataLoader(naes, batch_size=128, shuffle=False,
                                          num_workers=4, pin_memory=True)
 
-net = models.densenet121(pretrained=True)
-
+# net = models.densenet121(pretrained=True)
+net = models.resnet50(pretrained=True)
 net.cuda()
 net.eval()
 
