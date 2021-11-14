@@ -24,7 +24,7 @@ test_transform = trn.Compose(
 
 naes = dset.ImageFolder(root="/content/gdrive/MyDrive/imagenet-a", transform=test_transform)
 nae_loader = torch.utils.data.DataLoader(naes, batch_size=128, shuffle=False,
-                                         num_workers=4, pin_memory=True)
+                                         num_workers=2, pin_memory=True)
 
 
 
