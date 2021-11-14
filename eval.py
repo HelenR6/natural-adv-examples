@@ -8,6 +8,7 @@ import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
 import numpy as np
 import sys
+import torchvision.transforms as transforms
 
 from calibration_tools import *
 
