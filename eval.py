@@ -317,7 +317,19 @@ def load_model(model_type):
         del state_dict[k]
     resnet.load_state_dict(state_dict)
     return resnet
-
+  if model_type=='resnet50_l2_eps1' or model_type=='resnet50_l2_eps0.01' or model_type=='resnet50_l2_eps0.03' or model_type=='resnet50_l2_eps0.5' or model_type=='resnet50_l2_eps0.25' or model_type=='resnet50_l2_eps3' or model_type=='resnet50_l2_eps5' :
+    resnet=models.resnet50(pretrained=False)
+    ds = ImageNet('/tmp')
+    total_resnet, checkpoint = make_and_restore_model(arch='resnet50', dataset=ds,
+                resume_path=f'/content/gdrive/MyDrive/model_checkpoints/{model_type}.ckpt')
+    # resnet=total_resnet.attacker
+    state_dict=checkpoint['model']
+    for k in list(state_dict.keys()):
+        if k.startswith('module.attacker.model.') :
+            state_dict[k[len('module.attacker.model.'):]] = state_dict[k]
+        del state_dict[k]
+    resnet.load_state_dict(state_dict)
+    return resnet
 
 # net = models.densenet121(pretrained=True)
 net = load_model(sys.argv[1])
