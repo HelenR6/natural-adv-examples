@@ -9,6 +9,8 @@ import torch.nn.functional as F
 import numpy as np
 import sys
 import torchvision.transforms as transforms
+from robustness.datasets import CIFAR,ImageNet
+from robustness.model_utils import make_and_restore_model
 
 from calibration_tools import *
 
