@@ -400,6 +400,8 @@ def get_net_results():
 acc, test_confidence, test_correct = get_net_results()
 
 print('ImageNet-A Accuracy (%):', round(100*acc, 4))
+result=round(100*acc, 4)
+np.save(f'/content/gdrive/MyDrive/model_OOD_acc/imagenet-a/{sys.argv[1]}_accuracy.npy',result)
 
 show_calibration_results(np.array(test_confidence), np.array(test_correct))
 
